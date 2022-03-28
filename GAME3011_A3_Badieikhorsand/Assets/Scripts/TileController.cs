@@ -9,18 +9,31 @@ public class TileController : MonoBehaviour
 
     private Item _item;
 
-    public Item item
+    public Item Item
     {
-        get => item;
+        get => _item;
+
         set
         {
-            if (_item == value) return;
-            _item = value;
-            icon.sprite = _item.sprite;
+            if (_item == value)
+            {
+                return;
+            }
+            else
+            {
+                _item = value;
+
+                icon.sprite = _item.sprite;
+            }
         }
     }
 
     public Image icon;
 
     public Button button;
+
+    private void Start()
+    {
+        button.onClick.AddListener(()=>BoardController.Instance.Select(this));
+    }
 }
