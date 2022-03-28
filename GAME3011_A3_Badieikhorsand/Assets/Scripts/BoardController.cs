@@ -23,6 +23,8 @@ public class BoardController : MonoBehaviour
             {
                 var tile = rows[y].tile[x];
                 tiles[x, y] = tile;
+                tile.posX = x;
+                tile.posY = y;
                 tile.item = ItemDataBase.items[Random.Range(0,ItemDataBase.items.Length)];
             }
         }

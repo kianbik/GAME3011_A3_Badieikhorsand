@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Beer
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: d0c05b9125ed56349a5385e1a77547b7, type: 3}
-  Scorevalue: 0
+  Scorevalue: 5

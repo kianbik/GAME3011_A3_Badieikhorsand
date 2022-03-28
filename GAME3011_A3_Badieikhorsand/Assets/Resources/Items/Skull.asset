@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Skull
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 587503b6015abc741ad5147fff8f4a06, type: 3}
-  Scorevalue: 0
+  Scorevalue: 1

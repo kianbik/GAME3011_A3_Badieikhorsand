@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cef43b9210bda949b4fe2316876dc9f, type: 3}
-  m_Name: Potion
+  m_Name: Egg
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: ace8a02646afeda4880fc3cb14cad705, type: 3}
-  Scorevalue: 50
+  sprite: {fileID: 21300000, guid: d62fc87d7e2c1d740b3afc4193abf641, type: 3}
+  Scorevalue: 100
