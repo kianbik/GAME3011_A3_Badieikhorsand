@@ -75,8 +75,69 @@ public class BoardController : MonoBehaviour
 
 
     }
-    
+    private bool Canpop()
+    {
+        for (var y = 0; y < height; y++)
+        {
+            for (var x = 0; x < width; x++)
+            {
+                if (tiles[x, y].GetConnectedTiles().Skip(1).Count() >= 2)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-    
+    private async void Pop()
+    {
+        for (var y = 0; y < height; y++)
+        {
+            for (var x = 0; x < width; x++)
+            {
+                var tile = tiles[x, y];
+
+                var connectedTiles = tile.GetConnectedTiles();
+
+                if (connectedTiles.Skip(1).Count() < 2)
+                {
+                    continue;
+                }
+
+                var deafaultSequence = DOTween.Sequence();
+
+
+                foreach (var connectedTile in connectedTiles)
+                {
+                    deafaultSequence.Join(connectedTile.icon.transform.DOScale(Vector3.zero, Duration));
+
+                   
+
+                    await deafaultSequence.Play()
+                                          .AsyncWaitForCompletion();
+                }
+
+
+
+                var inflateSequence = DOTween.Sequence();
+
+                foreach (var connectedTile in connectedTiles)
+                {
+                    connectedTile.Item = ItemDataBase.items[Random.Range(0, ItemDataBase.items.Length)];
+
+                    inflateSequence.Join(connectedTile.icon.transform.DOScale(Vector3.one, Duration));
+                }
+
+                await inflateSequence.Play()
+                                     .AsyncWaitForCompletion();
+
+                x = 0;
+                y = 0;
+            }
+        }
+    }
+
+
 
 }
