@@ -10,6 +10,7 @@ public class BoardController : MonoBehaviour
     public RowController[] rows;
     public TileController[,] tiles { get; private set; }
 
+    public ScoreController scoreController;
     public int width => tiles.GetLength(0);
     public int height => tiles.GetLength(1);
 
@@ -41,8 +42,15 @@ public class BoardController : MonoBehaviour
 
 
         if (_selection.Count < 2)  return;
-
         await Swap(_selection[0], _selection[1]);
+        if (Canpop())
+        {
+            Pop();
+        }
+        else
+        {
+            await Swap(_selection[0], _selection[1]);
+        }
         _selection.Clear();
 
     }
@@ -112,7 +120,7 @@ public class BoardController : MonoBehaviour
                 {
                     deafaultSequence.Join(connectedTile.icon.transform.DOScale(Vector3.zero, Duration));
 
-                   
+                    ScoreController.IncreaseScore(tile.Item.Scorevalue * connectedTiles.Count);
 
                     await deafaultSequence.Play()
                                           .AsyncWaitForCompletion();
